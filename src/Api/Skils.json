@@ -1,0 +1,74 @@
+[
+  {
+    "skill": "HTML",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+    "level": 95,
+    "category": "Frontend"
+  },
+  {
+    "skill": "CSS",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+    "level": 90,
+    "category": "Frontend"
+  },
+  {
+    "skill": "JavaScript",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    "level": 90,
+    "category": "Frontend"
+  },
+  {
+    "skill": "Bootstrap",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
+    "level": 85,
+    "category": "Frontend"
+  },
+  {
+    "skill": "Tailwind",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+    "level": 95,
+    "category": "Frontend"
+  },
+  {
+    "skill": "Github",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+    "level": 65,
+    "category": "Tools"
+  },
+  {
+    "skill": "Figma",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+    "level": 80,
+    "category": "Tools"
+  },
+  {
+    "skill": "PHP",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+    "level": 65,
+    "category": "Backend"
+  },
+  {
+    "skill": "Laravel",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
+    "level": 90,
+    "category": "Backend"
+  },
+  {
+    "skill": "C",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
+    "level": 70,
+    "category": "Programming"
+  },
+  {
+    "skill": "C++",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+    "level": 75,
+    "category": "Programming"
+  },
+  {
+    "skill": "MySQL",
+    "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+    "level": 85,
+    "category": "Database"
+  }
+]

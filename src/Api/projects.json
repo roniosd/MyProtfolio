@@ -1,0 +1,47 @@
+[
+  {
+    "title": "GNOBB – Global Network of Bangladeshi Biotechnologists",
+    "type": "Frontend Web Development",
+    "description": "A responsive frontend project for a scientific community platform, built to support networking, news sharing, and collaboration among Bangladeshi biotechnologists worldwide.",
+    "image": "/project1.png",
+    "tech": "React, Tailwind, Netlify, cPanel",
+    "github": "",
+    "live": "https://gnobb.netlify.app/"
+  },
+  {
+    "title": "Raojan Islami Nobojagoron",
+    "type": "Full-Stack Web Application",
+    "description": "A non-political, non-profit organization dedicated to Dawah and humanitarian service, working with the noble aim of promoting education and human welfare in today’s society.",
+    "image": "/project2.png",
+    "tech": "React, Tailwind, Laravel, MySQL, cPanel",
+    "github": "",
+    "live": "https://jagoron.org/"
+  },
+  {
+    "title": "Country Information Hub",
+    "type": "Frontend Web Development",
+    "description": "A web application that displays detailed information about countries, featuring pagination and categorization for easy navigation. The project integrates an API to fetch real-time country data, providing users with up-to-date statistics, maps, and relevant details.",
+    "image": "/project3.png",
+    "tech": "React, Tailwind, Netlify",
+    "github": "https://github.com/roniosd/CountryProject",
+    "live": "https://dreamy-florentine-fc314d.netlify.app/"
+  },
+  {
+    "title": "College Website",
+    "type": "Frontend Web Development",
+    "description": "A user-friendly college website that showcases essential information such as admission details, course offerings, faculty, events, and campus facilities. The site is designed to provide an interactive experience with easy navigation, ensuring students, faculty, and visitors can access important resources quickly.",
+    "image": "/project4.png",
+    "tech": "Html, Css, Bootstrap, Gihub",
+    "github": "https://github.com/roniosd/collage-web",
+    "live": "https://roniosd.github.io/collage-web/"
+  },
+  {
+    "title": "Pokémon Explorer",
+    "type": "Frontend Web Development",
+    "description": "A Pokémon project that displays a comprehensive list of all Pokémon using an API. Users can explore details about each Pokémon, including stats, abilities, and types, with a clean, interactive interface. The project utilizes real-time data fetching for a dynamic and engaging user experience.",
+    "image": "/project5.png",
+    "tech": "React, Tailwind, Gihub",
+    "github": "https://github.com/roniosd/Pokimons",
+    "live": "https://roniosd.github.io/Pokimons/"
+  }
+]
