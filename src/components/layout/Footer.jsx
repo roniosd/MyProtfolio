@@ -18,8 +18,8 @@ export const Footer = () => {
   }, []);
   return (
     <footer className="text-white py-12 relative mt-10">
-      <div className="h-15 w-50 lg:w-100 absolute bg-black left-1/2 -top-[10px] lg:-top-[11px] border-b-0 -translate-x-1/2  border border-amber-400 rounded-[110px_100px_0px_0px] shadow-2xs"></div>
-      <h1 className="text-4xl lg:text-7xl text-white py-10 text-center border-amber-400 border-b border-t mb-10 z-100 bg-black">
+      <div className="h-15 w-50 lg:w-100 absolute bg-black left-1/2 -top-[10px] lg:-top-[11px] border-b-0 -translate-x-1/2  border border-amber-400 rounded-[110px_100px_0px_0px] shadow-2xs" />
+      <h1 className="text-4xl lg:text-7xl text-white py-10 text-center border-amber-400 border-b hover:border-amber-600 border-t mb-10 z-100 bg-black">
         <NavLink to="/contact">
           Let’s <span className="text-amber-700">Connect</span> the{" "}
           <span className="text-amber-700">Dots</span>
