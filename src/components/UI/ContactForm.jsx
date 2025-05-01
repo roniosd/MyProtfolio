@@ -83,7 +83,7 @@ export const ContactForm = () => {
               placeholder="Type your message here."
               rows={4}
               className="input w-full mt-4 resize-none"
-              name="massage"
+              name="message"
             ></textarea>
 
             <button
