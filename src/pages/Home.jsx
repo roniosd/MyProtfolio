@@ -8,7 +8,9 @@ export const Home = () => {
     <>
       <Hero />
       <SkillSection />
-      <Protfolio />
+      <section className="px-2 lg:pl-0">
+        <Protfolio />
+      </section>
       <InternshipSection />
     </>
   );

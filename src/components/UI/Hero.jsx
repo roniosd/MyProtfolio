@@ -69,14 +69,14 @@ export const Hero = () => {
     >
       <SocialLink />
 
-      <div className="flex flex-col lg:flex-row py-12 w-full md:px-9 px-4 lg:px-22 justify-between md:items-center text-white gap-10">
+      <div className="flex flex-col lg:flex-row py-12 w-full md:px-9 pl-5 lg:px-22 justify-between md:items-center text-white gap-10">
         <div className="relative lg:w-200">
           <h1 className="text-5xl lg:text-8xl font-bold lg:leading-30 mb-3">
             Building Tomorrow's Web
           </h1>
           <h1 className="text-4xl font-bold">
             I’m <span className="text-blue-400">Roni Dev</span>, a <br />
-            <div className="h-10 overflow-hidden relative w-100 flex items-center justify-start text-amber-400">
+            <div className="h-10 overflow-hidden relative lg:w-100 text-3xl flex items-center justify-start text-amber-400">
               <TypeAnimation
                 sequence={[
                   "Full-Stack Developer",
@@ -105,14 +105,14 @@ export const Hero = () => {
             <a
               href="Cv/Roni_Dev_CV.pdf"
               download
-              class="bg-[#225bc3] hover:bg-[#2564da] hover:scale-[1.065] hover:translate-y-[-7px] hover:rounded-[23px] hover:rounded-bl-none hover:rounded-br-none px-6 py-2 rounded-2xl rounded-bl-lg rounded-br-lg transition-all text-center text-[#d8e5f9] hover:text-[#a8c1f0] font-medium cursor-pointer"
+              className="bg-[#225bc3] hover:bg-[#2564da] hover:scale-[1.065] hover:translate-y-[-7px] hover:rounded-[23px] hover:rounded-bl-none hover:rounded-br-none px-6 py-2 rounded-2xl rounded-bl-lg rounded-br-lg transition-all text-center text-[#d8e5f9] hover:text-[#a8c1f0] font-medium cursor-pointer"
             >
               Download Resume
             </a>
             <a
               href="Cv/Roni_Dev_CV.pdf"
               target="_blank"
-              class="bg-[#5350c6] hover:bg-secondary-600 hover:scale-[1.065] hover:translate-y-[7px] hover:rounded-[23px] hover:rounded-tl-none hover:rounded-tr-none px-6 py-2 rounded-2xl rounded-tl-lg rounded-tr-lg transition-all text-center text-[#d8e5f9] hover:text-[#b3aaee] font-medium cursor-pointer"
+              className="bg-[#5350c6] hover:bg-secondary-600 hover:scale-[1.065] hover:translate-y-[7px] hover:rounded-[23px] hover:rounded-tl-none hover:rounded-tr-none px-6 py-2 rounded-2xl rounded-tl-lg rounded-tr-lg transition-all text-center text-[#d8e5f9] hover:text-[#b3aaee] font-medium cursor-pointer"
             >
               View Resume
             </a>
