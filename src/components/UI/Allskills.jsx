@@ -1,32 +1,50 @@
+/* eslint-disable no-unused-vars */
+import { motion } from "framer-motion";
 import skils from "../../Api/Skils.json";
 import { SectionTop } from "./SectionTop";
+import { useState } from "react";
+
 export const Allskills = () => {
+  const [action, setAction] = useState("All");
+  const filderData =
+    action == "All" ? skils : skils.filter((data) => data.category == action);
   return (
-    <section className="py-28 flex flex-col items-center justify-center text-white">
-      <SectionTop title="My Digital DNA" />
-      <p className="text-gray-400 lg:-mt-55 text-center max-w-xl text-sm sm:text-base">
+    <section className="py-28 flex flex-col items-center justify-center text-white relative">
+      <section className="lg:-mb-55 -z-10">
+        <SectionTop title="My Digital DNA" />
+      </section>
+      <p className="text-gray-400 text-center max-w-xl text-sm sm:text-base">
         These are the tools and technologies I use to build fast, scalable, and
         elegant web applications.
       </p>
 
       {/* Skill Categories */}
       <div className="flex flex-wrap justify-center gap-4 mt-10">
-        {["Frontend", "Backend", "Tools", "DevOps"].map((cat, i) => (
-          <span
-            key={i}
-            className="px-4 py-1 rounded-full bg-white/10 border border-white/10 text-sm tracking-wide"
-          >
-            {cat}
-          </span>
-        ))}
+        {["All", "Frontend", "Backend", "Tools", "Programming", "Database"].map(
+          (cat) => (
+            <button
+              onClick={() => setAction(cat)}
+              key={cat}
+              className={`px-4 py-1 rounded-full  border border-white/10 text-sm tracking-wide cursor-pointer ${
+                action == cat ? "bg-green-500/90" : "bg-white/10"
+              }`}
+            >
+              {cat}
+            </button>
+          )
+        )}
       </div>
 
       {/* Skill Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 max-w-6xl gap-10 mt-12 px-6">
-        {skils.map((data, index) => (
-          <div
+        {filderData.map((data, index) => (
+          <motion.div
             key={index}
-            className="group relative size-32 sm:size-36 bg-gradient-to-tr from-green-500 to-lime-400 rounded-[30px_10px_40px_5px] shadow-xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.07 }}
+            viewport={{ once: true }}
+            className="group relative size-32 sm:size-36 bg-gradient-to-tr from-green-500 to-lime-400 rounded-[30px_10px_40px_5px] shadow-xl hover:scale-105 transition-transform duration-500 flex flex-col items-center justify-center"
           >
             <img
               className="size-14 sm:size-16 transition-transform duration-500 group-hover:scale-110"
@@ -38,15 +56,15 @@ export const Allskills = () => {
             </p>
 
             {/* Skill Level Indicator */}
-            <div className="absolute bottom-2 left-15 -translate-x-1/2 w-4/5 h-2 bg-white rounded-full overflow-hidden">
-              <div
-                className="h-full bg-red-600"
-                style={{ width: data.level + "%" }}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-4/5 h-2 bg-white/20 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-white"
+                initial={{ width: 0 }}
+                whileInView={{ width: data.level + "%" }}
+                transition={{ duration: 1 }}
               />
             </div>
-
-          
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

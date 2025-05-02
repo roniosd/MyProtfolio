@@ -3,6 +3,27 @@ import curve from "/curve.png";
 import curve2 from "/curve2.png";
 import { SocialLink } from "./SocialLink";
 import { useEffect, useState } from "react";
+import { TypeAnimation } from "react-type-animation";
+
+const TypewriterEffect = ({ text, speed }) => {
+  const [displayedText, setDisplayedText] = useState("");
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (index < text.length) {
+        setDisplayedText((prev) => prev + text.charAt(index));
+        setIndex(index + 1);
+      } else {
+        clearInterval(timer);
+      }
+    }, speed);
+
+    return () => clearInterval(timer);
+  }, [index, text, speed]);
+
+  return <span>{displayedText}</span>;
+};
 
 export const Hero = () => {
   const texts = [
@@ -39,10 +60,11 @@ export const Hero = () => {
     }, 2500);
 
     return () => clearInterval(interval);
-  }, []);
+  });
   return (
-    <section id="home" className="flex hero flex-col lg:flex-row pb-20">
+    <section id="home" className="flex hero flex-col lg:flex-row pb-20 relative">
       <SocialLink />
+     
       <div className="flex flex-col lg:flex-row py-12 w-full md:px-9 px-4 lg:px-22 justify-between md:items-center text-white gap-10">
         <div className="relative lg:w-200">
           <h1 className="text-5xl lg:text-8xl font-bold lg:leading-30 mb-3">
@@ -50,23 +72,23 @@ export const Hero = () => {
           </h1>
           <h1 className="text-4xl font-bold">
             I’m <span className="text-blue-400">Roni Dev</span>, a <br />
-            <div className="h-10 overflow-hidden relative w-100 flex items-center justify-start">
-              {texts.map((text, index) => (
-                <span
-                  key={index}
-                  className={`text-3xl absolute transition-all duration-700 ease-in-out w-full
-            ${
-              index === currentIndex
-                ? `opacity-100 translate-y-0 ${color}`
-                : direction === "down"
-                ? "-translate-y-full opacity-0"
-                : "translate-y-full opacity-0"
-            }
-          `}
-                >
-                  {text}
-                </span>
-              ))}
+            <div className="h-10 overflow-hidden relative w-100 flex items-center justify-start text-amber-400">
+              <TypeAnimation
+                sequence={[
+                  "Full-Stack Developer",
+                  1000,
+                  "Frontend Developer",
+                  1000,
+                  "Backend Developer",
+                  1000,
+                  "Web Developer",
+                  1000,
+                ]}
+                wrapper="span"
+                speed={10}
+                style={{ display: "inline-block" }}
+                repeat={Infinity}
+              />
             </div>
           </h1>
           <p className="text-xl text-gray-400 opacity-80 mt-1">
@@ -74,44 +96,25 @@ export const Hero = () => {
             blending modern technologies with creative design for impactful
             digital experiences.
           </p>
+          <div className="flex gap-4 mt-4">
+            <a
+              href="/Cv/Roni_Dev_CV.pdf"
+              download
+              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+            >
+              Download Resume
+            </a>
+            <a
+              href="/Cv/Roni_Dev_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
+            >
+              View Resume
+            </a>
+          </div>
         </div>
 
-        {/* <div className="bg-slate-900 border border-amber-200 rounded-[50px_0px_50px_0px] p-3 md:w-110 lg:w-140 h-120 lg:h-160 relative">
-          <img className="h-full rounded-4xl" src={img} alt="" />
-          <img
-            className="absolute bottom-0 w-10 h-65 left-3"
-            src={curve}
-            alt=""
-          />
-          <img
-            className="absolute top-0 right-3 w-10 h-65"
-            src={curve2}
-            alt=""
-          />
-          <h1 className="absolute rotate-90 top-23 font-semibold -right-6 text-2xl">
-            Roni Dev
-          </h1>
-          <div className="absolute -rotate-90 bottom-32 font-semibold -left-24">
-            <div className="h-10 overflow-hidden relative w-60 flex items-center justify-start">
-              {texts.map((text, index) => (
-                <span
-                  key={index}
-                  className={`text-xl absolute transition-all duration-700 ease-in-out w-full
-            ${
-              index === currentIndex
-                ? `opacity-100 translate-y-0 ${color}`
-                : direction === "down"
-                ? "-translate-y-full opacity-0"
-                : "translate-y-full opacity-0"
-            }
-          `}
-                >
-                  {text}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div> */}
         <div
           className="group bg-slate-900 border border-amber-200 
     rounded-[50px_0px_50px_0px] p-3 md:w-110 lg:w-140 h-120 lg:h-160 relative

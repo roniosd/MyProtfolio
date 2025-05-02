@@ -9,9 +9,7 @@ export const SkillTree = () => {
   }, []);
 
   return (
-    <div
-      className={`w-full flex items-center justify-center`}
-    >
+    <div className="w-full flex items-center justify-center">
       <canvas
         ref={canvasRef}
         id="treeCanvas"
@@ -22,6 +20,22 @@ export const SkillTree = () => {
   );
 };
 
+// Utility functions
+class Utils {
+  static get dateValue() {
+    return +new Date();
+  }
+  static endPointX(angleInDeg, distance) {
+    return Math.sin((angleInDeg * Math.PI) / 180) * distance;
+  }
+  static endPointY(angleInDeg, distance) {
+    return Math.cos((angleInDeg * Math.PI) / 180) * distance;
+  }
+  static randomInt(min, max) {
+    return min + Math.round(Math.random() * (max - min));
+  }
+}
+
 class Tree {
   constructor(qs) {
     this.C = document.querySelector(qs);
@@ -29,69 +43,19 @@ class Tree {
     this.S = window.devicePixelRatio || 1;
     this.W = 800;
     this.H = 800;
-    this.branches = [];
-    this.darkTheme = false;
-    this.debug = false;
-    this.decaying = false;
     this.floorY = 685;
+
+    this.branches = [];
     this.fruit = [];
-    this.gravity = 0.009;
+    this.darkTheme = false;
+    this.decaying = false;
     this.loopDelay = 500;
     this.loopEnd = Utils.dateValue;
+    this.gravity = 0.009;
     this.maxGenerations = 9;
+    this.debug = false;
 
     this.skills = [
-      "HTML",
-      "CSS",
-      "Tailwind",
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Redux",
-      "Laravel",
-      "PHP",
-      "MySQL",
-      "Git",
-      "GitHub",
-      "UI/UX",
-      "Figma",
-      "Vite",
-      "HTML",
-      "CSS",
-      "Tailwind",
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Redux",
-      "Next.js",
-      "Laravel",
-      "PHP",
-      "MySQL",
-      "Git",
-      "GitHub",
-      "UI/UX",
-      "Figma",
-      "Canvas",
-      "Inertia.js",
-      "Vite",
-      "HTML",
-      "CSS",
-      "Tailwind",
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Redux",
-      "Next.js",
-      "Laravel",
-      "PHP",
-      "MySQL",
-      "Git",
-      "GitHub",
-      "UI/UX",
-      "Figma",
-      "Canvas",
-      "Inertia.js",
-      "Vite",
       "HTML",
       "CSS",
       "Tailwind",
@@ -112,23 +76,28 @@ class Tree {
       "Vite",
     ];
 
+    // Repeat skills to ensure enough fruits
+    this.skills = Array(4).fill(this.skills).flat();
+
     if (this.C) this.init();
   }
 
   get allBranchesComplete() {
-    const { branches, maxGenerations } = this;
     return (
-      branches.filter((b) => b.progress >= 1 && b.generation === maxGenerations)
-        .length > 0
+      this.branches.filter(
+        (b) => b.progress >= 1 && b.generation === this.maxGenerations
+      ).length > 0
     );
   }
 
   get allFruitComplete() {
-    return !!this.fruit.length && this.fruit.every((f) => f.progress === 1);
+    return this.fruit.length > 0 && this.fruit.every((f) => f.progress === 1);
   }
 
   get allFruitFalling() {
-    return !!this.fruit.length && this.fruit.every((f) => f.timeUntilFall <= 0);
+    return (
+      this.fruit.length > 0 && this.fruit.every((f) => f.timeUntilFall <= 0)
+    );
   }
 
   get debugInfo() {
@@ -143,8 +112,8 @@ class Tree {
   }
 
   get lastGeneration() {
-    const genIntegers = this.branches.map((b) => b.generation);
-    return [...new Set(genIntegers)].pop();
+    const generations = this.branches.map((b) => b.generation);
+    return [...new Set(generations)].pop();
   }
 
   get trunk() {
@@ -171,23 +140,22 @@ class Tree {
   }
 
   draw() {
-    const { c, W, H, debug, branches, fruit } = this;
-
+    const { c, W, H, branches, fruit, debug } = this;
     c.clearRect(0, 0, W, H);
 
     const lightness = this.darkTheme ? 90 : 10;
-    const foreground = `hsl(223,10%,${lightness}%)`;
+    const color = `hsl(223,10%,${lightness}%)`;
 
-    c.fillStyle = foreground;
-    c.strokeStyle = foreground;
+    c.fillStyle = color;
+    c.strokeStyle = color;
 
-    if (debug === true) {
-      const textX = 24;
+    if (debug) {
       this.debugInfo.forEach((d, i) => {
-        c.fillText(`${d.item}: ${d.value}`, textX, 24 * (i + 1));
+        c.fillText(`${d.item}: ${d.value}`, 24, 24 * (i + 1));
       });
     }
 
+    // Branches
     branches.forEach((b) => {
       c.lineWidth = b.diameter;
       c.beginPath();
@@ -197,21 +165,18 @@ class Tree {
         b.y1 + (b.y2 - b.y1) * b.progress
       );
       c.stroke();
-      c.closePath();
     });
 
+    // Fruits (skills)
     fruit.forEach((f, index) => {
       c.globalAlpha =
         f.decayTime < f.decayFrames ? f.decayTime / f.decayFrames : 1;
 
-      // Draw skill text
       c.fillStyle = "#6db33f";
       c.font = "24px 'Poppins', sans-serif";
 
-      const skill = this.skills[index]; // One skill per fruit
-      if (skill) {
-        c.fillText(skill, f.x, f.y);
-      }
+      const skill = this.skills[index];
+      if (skill) c.fillText(skill, f.x, f.y);
 
       c.globalAlpha = 1;
     });
@@ -231,7 +196,6 @@ class Tree {
           b.progress += b.growthSpeed;
           if (b.progress > 1) {
             b.progress = 1;
-
             if (b.generation === this.maxGenerations && Math.random() > 0.7) {
               this.fruit.push({
                 decayFrames: 60,
@@ -257,8 +221,7 @@ class Tree {
           const distance = b.distance * (1 - b.distanceFade);
           const generation = b.generation + 1;
 
-          const leftBranch = {
-            angle: angleLeft,
+          const baseBranch = {
             angleInc: b.angleInc,
             decaySpeed: b.decaySpeed,
             diameter: Math.floor(b.diameter * 0.9),
@@ -270,58 +233,65 @@ class Tree {
             progress: 0,
             x1: b.x2,
             y1: b.y2,
+          };
+
+          const left = {
+            ...baseBranch,
+            angle: angleLeft,
             x2: b.x2 + Utils.endPointX(angleLeft, distance),
             y2: b.y2 - Utils.endPointY(angleLeft, distance),
           };
 
-          const rightBranch = { ...leftBranch };
-          rightBranch.angle = angleRight;
-          rightBranch.x2 = b.x2 + Utils.endPointX(angleRight, distance);
-          rightBranch.y2 = b.y2 - Utils.endPointY(angleRight, distance);
+          const right = {
+            ...baseBranch,
+            angle: angleRight,
+            x2: b.x2 + Utils.endPointX(angleRight, distance),
+            y2: b.y2 - Utils.endPointY(angleRight, distance),
+          };
 
-          this.branches.push(leftBranch, rightBranch);
+          this.branches.push(left, right);
         }
       });
     }
 
-    if (!this.allFruitComplete) {
-      this.fruit.forEach((f) => {
-        if (f.progress < 1) {
-          f.progress += f.speed;
-          if (f.progress > 1) f.progress = 1;
-        }
-      });
-    }
+    this.fruit.forEach((f) => {
+      if (f.progress < 1) {
+        f.progress += f.speed;
+        if (f.progress > 1) f.progress = 1;
+      }
+    });
 
-    if (this.allBranchesComplete && this.allFruitComplete) this.decaying = true;
+    if (this.allBranchesComplete && this.allFruitComplete) {
+      this.decaying = true;
+    }
   }
 
   decay() {
-    if (this.fruit.length) {
-      this.fruit = this.fruit.filter((f) => f.decayTime > 0);
+    this.fruit = this.fruit.filter((f) => f.decayTime > 0);
 
-      this.fruit.forEach((f) => {
-        if (f.timeUntilFall <= 0) {
-          f.y += f.yVelocity;
-          f.yVelocity += this.gravity;
+    this.fruit.forEach((f) => {
+      if (f.timeUntilFall <= 0) {
+        f.y += f.yVelocity;
+        f.yVelocity += this.gravity;
 
-          const bottom = this.floorY - f.r;
-          if (f.y >= bottom) {
-            f.y = bottom;
-            f.yVelocity *= -f.restitution;
-          }
-
-          --f.decayTime;
-        } else if (!f.decaying) {
-          --f.timeUntilFall;
+        const bottom = this.floorY - f.r;
+        if (f.y >= bottom) {
+          f.y = bottom;
+          f.yVelocity *= -f.restitution;
         }
-      });
-    }
+
+        f.decayTime--;
+      } else {
+        f.timeUntilFall--;
+      }
+    });
 
     if (this.allFruitFalling || !this.fruit.length) {
       this.branches = this.branches.filter((b) => b.progress > 0);
       this.branches.forEach((b) => {
-        if (b.generation === this.lastGeneration) b.progress -= b.decaySpeed;
+        if (b.generation === this.lastGeneration) {
+          b.progress -= b.decaySpeed;
+        }
       });
     }
 
@@ -339,8 +309,7 @@ class Tree {
 
   run() {
     this.draw();
-    if (this.decaying) this.decay();
-    else this.grow();
+    this.decaying ? this.decay() : this.grow();
     requestAnimationFrame(this.run.bind(this));
   }
 
@@ -351,8 +320,7 @@ class Tree {
     C.style.width = "auto";
     C.style.height = "100%";
     c.scale(S, S);
-
-    c.font = "18px sans-serif bold";
+    c.font = "18px sans-serif";
     c.lineCap = "round";
     c.lineJoin = "round";
   }
@@ -363,20 +331,5 @@ class Tree {
       this.detectTheme(mq);
       mq.addEventListener("change", this.detectTheme.bind(this));
     }
-  }
-}
-
-class Utils {
-  static get dateValue() {
-    return +new Date();
-  }
-  static endPointX(angleInDeg, distance) {
-    return Math.sin((angleInDeg * Math.PI) / 180) * distance;
-  }
-  static endPointY(angleInDeg, distance) {
-    return Math.cos((angleInDeg * Math.PI) / 180) * distance;
-  }
-  static randomInt(min, max) {
-    return min + Math.round(Math.random() * (max - min));
   }
 }

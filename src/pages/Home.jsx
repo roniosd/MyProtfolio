@@ -19,8 +19,19 @@ export const Home = () => {
       <SkillSection />
       <Protfolio />
       <InternshipSection />
-      <section className="min-h-screen flex items-center justify-center py-22">
-        <video className="rounded-4xl border-2 border-amber-100" ref={videoRef} src={video} autoPlay muted loop playsInline />
+      <section className="min-h-screen flex items-center justify-center py-22 relative">
+        <video
+          className="rounded-4xl border-2 border-amber-100"
+          ref={videoRef}
+          src={video}
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <h1 className="absolute top-45 border-b-3 border-amber-400 pb-4 text-6xl text-white font-bold">
+          Fun Fact
+        </h1>
       </section>
     </>
   );

@@ -49,7 +49,7 @@ export const SocialLink = () => {
             key={index}
             to={social.link}
             target="_blank"
-            className={`text-white hover:text-blue-400 py-3 text-2xl transition-all duration-300 relative group ${social.color}`}
+            className={`text-white hover:text-blue-400 py-3 text-2xl transition-all duration-300 cursor-pointer relative group ${social.color}`}
           >
             {social.icon}
           </NavLink>

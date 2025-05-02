@@ -7,6 +7,7 @@ import { Skills } from "./pages/Skills";
 import { Protfolio } from "./pages/Protfolio";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import ThankYouPage from "./pages/ThankYouPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/thank-you",
+        element: <ThankYouPage />,
       },
     ],
   },

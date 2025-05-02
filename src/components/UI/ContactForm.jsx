@@ -24,6 +24,10 @@ export const ContactForm = () => {
       .then(
         () => {
           toast.success("Form Submit Successfully");
+
+          setTimeout(() => {
+            window.location.href = "/thank-you";
+          }, 2000);
           e.target.reset();
         },
         () => {
@@ -43,7 +47,7 @@ export const ContactForm = () => {
         <div className="flex flex-col items-center">
           <form
             onSubmit={handleSubmit}
-            className="bg-[#1C1C1E] p-8 rounded-2xl shadow-lg lg:w-160 h-150"
+            className="bg-[#1C1C1E] p-8 rounded-2xl shadow-lg lg:w-160 lg:h-150"
           >
             <h2 className="text-3xl text-white font-semibold mb-2">
               Let's work together
@@ -56,13 +60,16 @@ export const ContactForm = () => {
               placeholder="Full name"
               className="input w-full"
               name="name"
+              required
             />
-            <div className="grid grid-cols-2 gap-4 mb-5 mt-5">
+            <input type="hidden" value={new Date()} name="time" id="" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-5 mt-5">
               <input
                 type="email"
                 placeholder="Email address"
                 className="input col-span-1"
                 name="email"
+                required
               />
               <input
                 type="text"
@@ -84,19 +91,22 @@ export const ContactForm = () => {
               rows={4}
               className="input w-full mt-4 resize-none"
               name="message"
+              required
             ></textarea>
 
-            <button
-              type="submit"
-              className="mt-6 px-6 border border-amber-300 text-amber-300 py-1 rounded-full transition duration-300 hover:bg-amber-300 hover:text-white disabled:opacity-50"
-              disabled={loading}
-            >
-              {loading ? (
-                <p className="size-5 border rounded-full border-t-white animate-spin border-amber-400" />
-              ) : (
-                "Send message"
-              )}
-            </button>
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="mt-6 px-8 py-3 text-amber-300 border border-amber-300 rounded-full transition-all duration-500 ease-in-out transform hover:scale-105 hover:bg-amber-400 hover:text-white focus:ring-2 focus:ring-amber-300 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={loading}
+              >
+                {loading ? (
+                  <div className="w-6 h-6 border-4 border-t-amber-400 border-gray-200 rounded-full animate-spin mx-auto"></div>
+                ) : (
+                  "Send message"
+                )}
+              </button>
+            </div>
           </form>
           <VerticalSocialLink />
         </div>

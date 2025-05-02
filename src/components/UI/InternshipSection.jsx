@@ -28,7 +28,7 @@ export default function InternshipSection() {
               www.softbin.com.bd
             </NavLink>
 
-            <p className="text-gray-300 mt-4 text-sm leading-relaxed">
+            <p className="text-gray-300 text-justify mt-4 text-sm leading-relaxed">
               <strong>SOFTBIN</strong> is a digital communication company that
               specializes in cost-effective website management systems and
               online strategy development services. Their focus lies in
@@ -39,7 +39,7 @@ export default function InternshipSection() {
               value-driven output, and time efficiency.
             </p>
 
-            <p className="text-gray-700 dark:text-gray-300 mt-4 text-lg leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-300 mt-4 text-lg leading-relaxed text-justify">
               Established in response to market demand for affordable yet
               high-quality web solutions, SOFTBIN has over 6 years of industry
               experience. With continuous improvements and investments in their

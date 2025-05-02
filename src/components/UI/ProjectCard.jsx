@@ -6,14 +6,14 @@ export const ProjectCard = ({ project, index }) => {
     <div className=" flex flex-col md:flex-row items-center gap-26 text-white px-6 py-10">
       {/* Left Content */}
       <div className="max-w-xl space-y-4 ">
-        <h1 className="text-8xl font-black font-noto text-black text-outline">
+        <h1 className="text-8xl font-black font-noto text-gray-900 text-outline">
           {index < 9 ? `0 ${index + 1}` : index + 1}
         </h1>
 
         <h2 className="text-4xl font-bold">{project.title}</h2>
         <h3 className="text-xl text-gray-400">{project.type}</h3>
         <p className="text-gray-300">{project.description}</p>
-        <p className="text-green-400 font-mono">{project.tech}</p>
+        <p className="text-green-400 font-mono">{project.tech.join(', ')}</p>
 
         <div className="flex gap-4 pt-4 ">
           <NavLink to={project.github} target="_blank">
