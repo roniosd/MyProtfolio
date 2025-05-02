@@ -26,6 +26,7 @@
     filter: blur(0.5px);
   }
 }
+
 html {
   scroll-behavior: smooth;
 }

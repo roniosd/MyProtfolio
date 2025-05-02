@@ -4,6 +4,7 @@ import curve2 from "/curve2.png";
 import { SocialLink } from "./SocialLink";
 import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
+import { IoMdDownload } from "react-icons/io";
 
 const TypewriterEffect = ({ text, speed }) => {
   const [displayedText, setDisplayedText] = useState("");
@@ -62,9 +63,12 @@ export const Hero = () => {
     return () => clearInterval(interval);
   });
   return (
-    <section id="home" className="flex hero flex-col lg:flex-row pb-20 relative">
+    <section
+      id="home"
+      className="flex hero flex-col lg:flex-row pb-20 relative"
+    >
       <SocialLink />
-     
+
       <div className="flex flex-col lg:flex-row py-12 w-full md:px-9 px-4 lg:px-22 justify-between md:items-center text-white gap-10">
         <div className="relative lg:w-200">
           <h1 className="text-5xl lg:text-8xl font-bold lg:leading-30 mb-3">
@@ -96,19 +100,19 @@ export const Hero = () => {
             blending modern technologies with creative design for impactful
             digital experiences.
           </p>
-          <div className="flex gap-4 mt-4">
+
+          <div className="flex gap-4 mt-10">
             <a
-              href="/Cv/Roni_Dev_CV.pdf"
+              href="Cv/Roni_Dev_CV.pdf"
               download
-              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+              class="bg-[#225bc3] hover:bg-[#2564da] hover:scale-[1.065] hover:translate-y-[-7px] hover:rounded-[23px] hover:rounded-bl-none hover:rounded-br-none px-6 py-2 rounded-2xl rounded-bl-lg rounded-br-lg transition-all text-center text-[#d8e5f9] hover:text-[#a8c1f0] font-medium cursor-pointer"
             >
               Download Resume
             </a>
             <a
-              href="/Cv/Roni_Dev_CV.pdf"
+              href="Cv/Roni_Dev_CV.pdf"
               target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
+              class="bg-[#5350c6] hover:bg-secondary-600 hover:scale-[1.065] hover:translate-y-[7px] hover:rounded-[23px] hover:rounded-tl-none hover:rounded-tr-none px-6 py-2 rounded-2xl rounded-tl-lg rounded-tr-lg transition-all text-center text-[#d8e5f9] hover:text-[#b3aaee] font-medium cursor-pointer"
             >
               View Resume
             </a>
