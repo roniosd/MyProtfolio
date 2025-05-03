@@ -12,10 +12,10 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { to: "/", label: "Home", icon: <FcHome /> },
-    { to: "/about", label: "About", icon: <FcAbout /> },
-    { to: "/skill", label: "Skills", icon: <SiSkillshare /> },
-    { to: "/portfolio", label: "Portfolio", icon: <FaRProject /> },
+    { to: "/", label: "Home", icon: "/NavIcon/home.png" },
+    { to: "/about", label: "About", icon: "/NavIcon/about.png" },
+    { to: "/skill", label: "Skills", icon: "/NavIcon/skills.png" },
+    { to: "/portfolio", label: "Portfolio", icon: "/NavIcon/portfolio.png" },
   ];
 
   return (
@@ -53,7 +53,7 @@ export const Header = () => {
             {menuItems.map((item, index) => {
               const angle = (index * 360) / menuItems.length;
               const radians = (angle * Math.PI) / 180;
-              const distance = 80; 
+              const distance = 80;
 
               const x = distance * Math.cos(radians);
               const y = distance * Math.sin(radians);
@@ -64,7 +64,7 @@ export const Header = () => {
                   key={index}
                   to={item.to}
                   onClick={() => setIsOpen(false)}
-                  className={`w-12 h-12 text-3xl rounded-full bg-slate-900 text-white flex items-center justify-center shadow-md absolute transition-all duration-500 ${
+                  className={`size-15 text-3xl rounded-full text-white flex items-center justify-center shadow-md absolute transition-all duration-500 ${
                     isOpen ? "opacity-100 scale-100" : "opacity-0 scale-0"
                   }`}
                   style={{
@@ -73,7 +73,7 @@ export const Header = () => {
                       : `translate(0, 0) scale(0)`,
                   }}
                 >
-                  <span> {item.icon}</span>
+                  <img className="size-13 rounded-full" src={item.icon} alt="Nav icon" />
                 </NavLink>
               );
             })}
