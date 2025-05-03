@@ -47,7 +47,7 @@ export const Header = () => {
         </div>
 
         {/* Floating Action Button and Mobile Menu */}
-        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 lg:hidden z-50">
+        <div className="fixed bottom-25 left-1/2 -translate-x-1/2 lg:hidden z-50">
           <div className="relative w-20 flex items-center justify-center h-20">
             {/* Menu Items */}
             {menuItems.map((item, index) => {
