@@ -45,9 +45,6 @@ export const App = () => {
   return (
     <>
      <AnimatedCursor
-        innerSize={12}
-        outerSize={10}
-        color="251, 191, 36"
       />
       <RouterProvider router={router} />
       <ToastContainer />
